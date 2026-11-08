@@ -1,0 +1,549 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Little Story ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #10090d;
+    color: #f8e9e9;
+    font-family: Georgia, serif;
+    overflow-x: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* LOGIN */
+#login {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, #451c30, #10090d 75%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 10;
+    text-align: center;
+    padding: 25px;
+}
+
+.heart {
+    position: relative;
+    width: 65px;
+    height: 65px;
+    background: #c73562;
+    transform: rotate(-45deg);
+    animation: beat 1s infinite;
+    margin: 35px 0 45px;
+    box-shadow: 0 0 35px #d84c76;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    background: #c73562;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -32px;
+    left: 0;
+}
+
+.heart::after {
+    left: 32px;
+    top: 0;
+}
+
+@keyframes beat {
+    0%, 100% { transform: rotate(-45deg) scale(1); }
+    50% { transform: rotate(-45deg) scale(1.2); }
+}
+
+#login h1 {
+    font-size: 30px;
+    color: #f5c8d5;
+    margin-bottom: 12px;
+}
+
+#login p {
+    color: #d5aab8;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+input {
+    padding: 15px;
+    width: 260px;
+    background: #21141c;
+    border: 1px solid #a75b75;
+    border-radius: 30px;
+    color: white;
+    text-align: center;
+    outline: none;
+    letter-spacing: 5px;
+}
+
+button {
+    padding: 13px 30px;
+    margin-top: 18px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #d68a9e, #84334f);
+    color: white;
+    cursor: pointer;
+    letter-spacing: 2px;
+}
+
+#error {
+    color: #ff8b9d;
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+/* LOADING */
+#loading {
+    position: fixed;
+    inset: 0;
+    background: #10090d;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 20;
+}
+
+#loading .heart {
+    width: 45px;
+    height: 45px;
+}
+
+#loading .heart::before,
+#loading .heart::after {
+    width: 45px;
+    height: 45px;
+}
+
+#loading .heart::before {
+    top: -22px;
+}
+
+#loading .heart::after {
+    left: 22px;
+}
+
+#loading p {
+    margin-top: 25px;
+    color: #e9b9c8;
+    letter-spacing: 3px;
+    font-size: 12px;
+}
+
+/* MAIN */
+#main {
+    display: none;
+    animation: appear 2s ease;
+}
+
+@keyframes appear {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 30px;
+    background:
+    linear-gradient(#10090d99,#10090ddd),
+    radial-gradient(circle at center, #642b44, #10090d 75%);
+}
+
+.hero .small {
+    letter-spacing: 5px;
+    color: #d99cac;
+    font-size: 11px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 9vw, 75px);
+    color: #f2c9d5;
+    margin: 25px 0;
+    font-weight: normal;
+}
+
+.hero p {
+    color: #e0b8c4;
+    line-height: 2;
+    max-width: 450px;
+}
+
+.scroll {
+    margin-top: 60px;
+    color: #dca6b7;
+    font-size: 12px;
+    letter-spacing: 3px;
+    animation: float 2s infinite;
+}
+
+@keyframes float {
+    50% { transform: translateY(10px); }
+}
+
+/* SECTION */
+section {
+    padding: 85px 22px;
+    max-width: 850px;
+    margin: auto;
+    text-align: center;
+}
+
+.subtitle {
+    color: #c77e96;
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 18px;
+}
+
+section h2 {
+    color: #f0c7d3;
+    font-size: 32px;
+    font-weight: normal;
+    margin-bottom: 30px;
+}
+
+.description {
+    color: #d8bac4;
+    line-height: 2;
+    font-size: 15px;
+}
+
+/* FOTO */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #754052;
+}
+
+.photo-placeholder {
+    min-height: 190px;
+    border: 1px dashed #98516a;
+    background: #21141c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #c58b9e;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+/* TIMELINE */
+.timeline {
+    border-left: 1px solid #a65b76;
+    margin: 40px auto;
+    max-width: 500px;
+    text-align: left;
+}
+
+.event {
+    padding: 0 0 35px 25px;
+    position: relative;
+}
+
+.event::before {
+    content: "♥";
+    position: absolute;
+    left: -8px;
+    top: 0;
+    color: #d982a0;
+    background: #10090d;
+}
+
+.event h3 {
+    color: #e8aebe;
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+
+.event p {
+    color: #cbb1ba;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* LETTER */
+.letter {
+    padding: 35px 25px;
+    background: linear-gradient(145deg, #321a27, #1b1017);
+    border: 1px solid #855064;
+    border-radius: 12px;
+    line-height: 2;
+    color: #e8cbd4;
+    text-align: left;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 60px 20px;
+    color: #b77e91;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.heart-icon {
+    color: #d75c83;
+    font-size: 25px;
+    margin: 20px;
+}
+
+@media(max-width: 500px) {
+    .gallery img {
+        height: 170px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+    <div class="heart"></div>
+    <h1>Our Little Story</h1>
+    <p>Sebuah cerita kecil yang hanya kita berdua tahu.</p>
+
+    <input type="password" id="password"
+    placeholder="MASUKKAN KODE">
+
+    <br>
+    <button onclick="checkPassword()">OPEN OUR STORY</button>
+
+    <div id="error"></div>
+</div>
+
+<!-- LOADING -->
+<div id="loading">
+    <div class="heart"></div>
+    <p>PREPARING OUR MEMORIES...</p>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+
+    <div class="hero">
+        <div class="small">A STORY WRITTEN BY TWO HEARTS</div>
+
+        <h1>MUTIARANI :3</h1>
+
+        <p>
+            Tidak semua cerita harus sempurna.
+            Terkadang, cukup ada dua orang yang
+            saling memilih untuk tetap bersama.
+        </p>
+
+        <div class="scroll">SCROLL KEBAWAH YAK SAYANG</div>
+    </div>
+
+    <section>
+        <div class="subtitle">CHAPTER 01</div>
+        <h2>Awal dari Segalanya</h2>
+
+        <p class="description">
+            Siapa sangka, dari dua orang yang awalnya
+            tidak saling mengenal, akhirnya tercipta
+            sebuah cerita yang begitu berarti, dan awal itu kenal di telegram yakk hehe seseru itu ternyata kalau sudah saling mencintai.
+            Terima kasih sudah hadir dan menjadi
+            bagian dari perjalanan hidupku.
+        </p>
+    </section>
+
+    <section>
+        <div class="subtitle">CHAPTER 02</div>
+        <h2>Our Memories</h2>
+
+        <p class="description">
+            Beberapa momen mungkin terlihat sederhana
+            bagi orang lain, tetapi bagiku setiap
+            detiknya memiliki cerita tersendiri.
+        </p>
+
+        <div class="gallery">
+            <!-- GANTI FOTO DENGAN FOTO KALIAN -->
+            <img src="foto1.jpg">
+            <img src="foto2.jpg">
+            <img src="foto3.jpg">
+            <img src="foto4.jpg">
+        </div>
+    </section>
+
+    <section>
+        <div class="subtitle">CHAPTER 03</div>
+        <h2>Our Little Journey</h2>
+
+        <div class="timeline">
+
+            <div class="event">
+                <h3>04 September 2026</h3>
+                <p>
+                    Sebuah tanggal yang menjadi bagian
+                    penting dari cerita kita.
+                    Awal dari perjalanan yang ingin
+                    terus aku jaga.
+                </p>
+            </div>
+
+            <div class="event">
+                <h3>Waktu Bersama</h3>
+                <p>
+                    Tawa, cerita, dan momen sederhana
+                    yang perlahan menjadi kenangan
+                    paling berharga.
+                </p>
+            </div>
+
+            <div class="event">
+                <h3>Perjalanan ke Blok M</h3>
+                <p>
+                    Salah satu perjalanan kecil kita.
+                    Mungkin hanya sebuah liburan biasa,
+                    tetapi kenangannya akan selalu
+                    punya tempat tersendiri di hati.
+                </p>
+            </div>
+
+            <div class="event">
+                <h3>To Be Continued...</h3>
+                <p>
+                    Semoga masih banyak cerita indah
+                    yang bisa kita tulis bersama.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="subtitle">A LETTER FOR YOU</div>
+        <h2>Terima Kasih, Sayang</h2>
+
+        <div class="letter">
+            Untuk seseorang yang selalu aku syukuri,
+
+            <br><br>
+
+            Terima kasih sudah menemaniku dari nol.
+            Terima kasih karena sudah menerima segala
+            kekuranganku, bahkan ketika aku belum
+            menjadi seseorang yang sempurna.
+
+            <br><br>
+
+            Aku tahu perjalanan kita tidak selalu
+            mudah. Ada tawa, ada bahagia, ada
+            perbedaan, bahkan ada saat ketika
+            kita harus saling memahami lebih dalam.
+
+            <br><br>
+
+            Aku tidak bisa menjanjikan bahwa semuanya
+            akan selalu indah. Tetapi aku ingin terus
+            belajar menjadi seseorang yang lebih baik,
+            bukan hanya untuk diriku sendiri,
+            tetapi juga untuk kita.
+
+            <br><br>
+
+            Jika suatu hari nanti kita melihat kembali
+            halaman ini, semoga kita bisa tersenyum
+            dan berkata bahwa semua perjalanan ini
+            memang layak untuk diperjuangkan.
+
+            <br><br>
+
+            Terima kasih sudah menjadi bagian
+            dari cerita hidupku.
+
+            <br><br>
+
+            Dengan penuh cinta,
+            <br>
+            Seseorang yang selalu bersyukur memilikimu.
+        </div>
+
+        <div class="heart-icon">♥</div>
+    </section>
+
+    <footer>
+        MADE WITH LOVE, JUST FOR MUTIARANI
+        <br><br>
+        TENTANG PERJALANAN HUBUNGAN KITA.
+        <br><br>
+        © 2026
+    </footer>
+
+</div>
+
+<script>
+function checkPassword() {
+    const password = document.getElementById("password").value;
+
+    if (password === "040926") {
+
+        document.getElementById("login").style.display = "none";
+
+        const loading = document.getElementById("loading");
+        loading.style.display = "flex";
+
+        setTimeout(() => {
+            loading.style.display = "none";
+
+            const main = document.getElementById("main");
+            main.style.display = "block";
+
+            window.scrollTo(0, 0);
+        }, 3000);
+
+    } else {
+        document.getElementById("error").innerText =
+        "Kode rahasia salah. Coba sekali lagi ❤️";
+    }
+}
+
+document.getElementById("password")
+.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        checkPassword();
+    }
+});
+</script>
+
+</body>
+</html>
